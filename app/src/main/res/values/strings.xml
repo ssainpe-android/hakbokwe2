@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">hakbokwe</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="work">학생복지위원회에서는 학생들의 복지를 위해 사업 및 행사를 기획합니다. 학생복지위원회에서 하고 있는 사업 중 가장 대표저적인 사업으로 대여 사업이 있습니다. 보조배터리와 같은 생필품부터 행사 때 쓰이는 천막까지 다양한 물품들을 무료로 대여해주고 있습니다.</string>
+    <string name="apply">현재  학생복지위원회는 총 6명으로 구성되어 있으며 인원 이탈이 있을 시 에브리타임과 인스타, 학생복지위원회 앱을 통해 모집공지를 할 예정입니다.</string>
 </resources>

@@ -6,13 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <FrameLayout
+        android:id="@+id/main_frm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:flow_verticalBias="0.0"
+        app:layout_constraintBottom_toTopOf="@id/main_bnv"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#343a40"
+        app:layout_constraintBottom_toTopOf="@id/main_bnv"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bnv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#f1f3f5"
+        app:itemIconSize="45dp"
+        app:itemIconTint="#868e96"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

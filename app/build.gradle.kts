@@ -1,10 +1,16 @@
+import com.android.aaptcompiler.parseNavHidden
+
 plugins {
     id("com.android.application")
 }
 
 android {
     namespace = "com.example.hakbokwe"
-    compileSdk = 33
+    compileSdk = 34
+
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.hakbokwe"
