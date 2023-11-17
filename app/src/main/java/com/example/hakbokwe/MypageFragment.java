@@ -9,19 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hakbokwe.databinding.FragmentHomeBinding;
+import com.example.hakbokwe.databinding.FragmentMypageBinding;
 
-public class HomeFragment extends Fragment {
+public class MypageFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentMypageBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        binding = FragmentMypageBinding.inflate(inflater,container,false);
         View view =binding.getRoot();
+        binding.mypageProfileFace.setImageResource(R.drawable.profileface);
         return view;
-
-
     }
 }
-
