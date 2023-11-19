@@ -18,7 +18,7 @@
         android:layout_height="165dp"
         android:layout_marginTop="20dp"
 
-        android:background="@color/brightgray"
+        android:background="@color/thirdgray"
         app:cardCornerRadius="10dp">
 
         <TextView
@@ -44,7 +44,7 @@
         android:layout_width="350dp"
         android:layout_height="165dp"
         android:layout_marginTop="30dp"
-        android:background="@color/brightgray"
+        android:background="@color/thirdgray"
         app:cardCornerRadius="10dp">
 
         <TextView
