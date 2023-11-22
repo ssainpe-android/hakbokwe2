@@ -3,24 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--    item title 안 달면 xml code error로  commit 실패.-->
     <item
         android:id="@+id/menuFragment"
         android:enabled="true"
         android:icon="@drawable/menu"
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction"
-        android:title="TODO" />
+        android:title="" />
 
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
         app:showAsAction="always"
-        android:title="TODO" />
+        android:title="" />
     
     <item
         android:id="@+id/mypageFragment"
         android:icon="@drawable/profile"
         app:showAsAction="always"
-        android:title="TODO" />
+        android:title="" />
 
 </menu>
