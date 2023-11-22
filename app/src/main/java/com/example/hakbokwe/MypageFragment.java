@@ -20,7 +20,7 @@ public class MypageFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMypageBinding.inflate(inflater,container,false);
         View view =binding.getRoot();
-        binding.mypageProfileFace.setImageResource(R.drawable.profileface);
+        binding.mypageProfileFaceIv.setImageResource(R.drawable.profileface);
         return view;
     }
 }

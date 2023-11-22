@@ -5,9 +5,9 @@
     android:layout_height="100dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/item_rental_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/item_rental_icon_cv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="20dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,11 +15,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/item_rental_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/umbrella_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:src="@drawable/umbrella_icon" />
 
     </androidx.cardview.widget.CardView>
 
@@ -33,8 +32,8 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/item_rental_icon"
-        app:layout_constraintTop_toTopOf="@id/item_rental_icon" />
+        app:layout_constraintStart_toEndOf="@id/item_rental_icon_cv"
+        app:layout_constraintTop_toTopOf="@id/item_rental_icon_cv" />
 
     <TextView
         android:id="@+id/item_rental_quantity"
