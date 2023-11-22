@@ -18,7 +18,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    HomeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

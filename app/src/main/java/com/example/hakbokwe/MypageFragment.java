@@ -19,7 +19,6 @@ public class MypageFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMypageBinding.inflate(inflater,container,false);
         View view =binding.getRoot();
-        //TODO Check that mypageProfileFace means mypageProfileFaceIv?
         binding.mypageProfileFaceIv.setImageResource(R.drawable.profileface);
         return view;
     }

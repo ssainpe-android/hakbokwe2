@@ -22,7 +22,6 @@ public class LoginTriggerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 200 && resultCode == RESULT_OK) {
-            //TODO After code merging, second parameter will be changed to MainActivity(==rent_main)
             startActivity(new Intent(LoginTriggerActivity.this, MainActivity.class));
         }
         super.onActivityResult(requestCode, resultCode, data);
