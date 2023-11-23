@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.firebase.FirebaseApp;
+
 public class LoginTriggerActivity extends AppCompatActivity {
 
     @Override

@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -46,4 +47,21 @@ dependencies {
 
     //For parsing from html to studentInfo when login
     implementation("org.jsoup:jsoup:1.13.1")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 }
+
+

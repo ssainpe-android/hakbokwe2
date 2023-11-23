@@ -5,16 +5,13 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <ImageButton
-        android:id="@+id/home_search_btn"
+    <EditText
+        android:id="@+id/home_search_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@color/white"
-        android:scaleType="fitXY"
-        android:src="@drawable/searchbar" />
-
+        android:hint="검색어 입력"
+        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"/>
 
     <LinearLayout
         android:id="@+id/home_category_ll"
@@ -65,7 +62,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_itemlist"
+        android:id="@+id/home_item_list_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
