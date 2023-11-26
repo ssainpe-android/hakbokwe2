@@ -8,7 +8,7 @@
     <EditText
         android:id="@+id/home_search_et"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:hint="검색어 입력"
         android:inputType="textPersonName"
         android:layout_marginTop="50dp"/>

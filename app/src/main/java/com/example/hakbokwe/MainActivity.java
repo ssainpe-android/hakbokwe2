@@ -12,12 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.hakbokwe.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
+
+import android.content.Context;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -30,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         //드로우 레이아웃 객체 저장
         drawer = findViewById(R.id.drawer);
         //첫번째는 홈화면
-        loadFragment(new HomeFragment());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_frm, new HomeFragment())
+                .commit();
         //옆에메뉴 리스너
         drawerlistener();
         //네비게이션 리스너
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_frm, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 }
