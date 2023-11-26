@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         //드로우 레이아웃 객체 저장
         drawer = findViewById(R.id.drawer);
         //첫번째는 홈화면
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_frm, new HomeFragment())
-                .commit();
+        loadFragment(new HomeFragment());
         //옆에메뉴 리스너
         drawerlistener();
         //네비게이션 리스너
@@ -76,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_frm, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 }
