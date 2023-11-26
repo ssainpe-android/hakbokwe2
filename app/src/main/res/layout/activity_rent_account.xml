@@ -12,7 +12,7 @@
         android:id="@+id/rent_account_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="< BACK"
+        android:text="BACK"
         android:textColor="@color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
