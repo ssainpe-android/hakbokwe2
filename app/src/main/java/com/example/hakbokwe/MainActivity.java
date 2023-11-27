@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -18,6 +21,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.hakbokwe.databinding.ActivityMainBinding;
+import com.example.hakbokwe.databinding.FragmentNoticeListBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
 import android.content.Context;
@@ -74,5 +78,20 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.main_frm, fragment)
                 .commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_frm);
+
+        if(keyCode == KeyEvent.KEYCODE_BACK && !(currentFragment instanceof HomeFragment)) {
+            loadFragment(new HomeFragment());
+        }
+        else if(keyCode == KeyEvent.KEYCODE_BACK && drawer.isOpen()) {
+            drawer.close();
+        }
+
+        return true;
     }
 }
