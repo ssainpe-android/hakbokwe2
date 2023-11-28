@@ -30,6 +30,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     DrawerLayout drawer;
+    long initTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +93,15 @@ public class MainActivity extends AppCompatActivity {
             drawer.close();
         }
         else if(keyCode == KeyEvent.KEYCODE_BACK && !(drawer.isOpen())) {
-            showToast("앱을 종료하려면 뒤로가기를 한번 더 눌러주세요");
-            finish();
+            if(System.currentTimeMillis() - initTime > 3000) {
+                showToast("종료하려면 한 번 더 누르세요.");
+                initTime = System.currentTimeMillis();
+            }
+            else {
+                finishAffinity();
+                System.runFinalization();
+                System.exit(0);
+            }
         }
 
         return true;

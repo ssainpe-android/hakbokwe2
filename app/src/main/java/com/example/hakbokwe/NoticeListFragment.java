@@ -50,7 +50,6 @@ public class NoticeListFragment extends Fragment {
 
         //Firestore 이용
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         db.collection("notice").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
