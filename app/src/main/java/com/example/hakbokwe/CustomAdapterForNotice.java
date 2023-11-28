@@ -1,6 +1,7 @@
 package com.example.hakbokwe;
 
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,24 +61,35 @@ public class CustomAdapterForNotice extends RecyclerView.Adapter<CustomAdapterFo
         private TextView type;
         private TextView title;
         private TextView date;
-        private ImageView transition;
-        FragmentManager manager;
+        private View transitionView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             type = itemView.findViewById(R.id.noticelist_type_tv);
             title = itemView.findViewById(R.id.noticelist_title_tv);
             date = itemView.findViewById(R.id.noticelist_date_tv);
-            transition = itemView.findViewById(R.id.noticelist_transition_iv);
+            transitionView = itemView.findViewById(R.id.item_notice_transition);
 
-            transition.setOnClickListener(new View.OnClickListener() {
+
+            transitionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION) {
-                        Log.d("TAG", "clicked");
+                        FragmentManager fragmentManager = ((FragmentActivity) itemView.getContext()).getSupportFragmentManager();
+                        NoticeContentFragment noticeContentFragment = NoticeContentFragment.newInstance("param1", "param2");
+                        Bundle result = new Bundle();
+                        result.putString("bundleKey", String.valueOf(position));
+                        fragmentManager.setFragmentResult("requestKey", result);
+                        fragmentManager.beginTransaction()
+                                .add(R.id.main_frm, noticeContentFragment)
+                                .addToBackStack(null)
+                                .commit();
                     }
                 }
             });
+
+
         }
     }
 }

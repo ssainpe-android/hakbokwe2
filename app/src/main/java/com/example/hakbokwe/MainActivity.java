@@ -81,18 +81,19 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    //뒤로가기 버튼을 눌렀을 때 어떻게 화면이 전환되는지
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_frm);
 
-        if(keyCode == KeyEvent.KEYCODE_BACK && !(currentFragment instanceof HomeFragment)) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && !(currentFragment instanceof HomeFragment) && !(currentFragment instanceof NoticeContentFragment)) {
             loadFragment(new HomeFragment());
         }
         else if(keyCode == KeyEvent.KEYCODE_BACK && drawer.isOpen()) {
             drawer.close();
         }
-        else if(keyCode == KeyEvent.KEYCODE_BACK && !(drawer.isOpen())) {
+        else if(keyCode == KeyEvent.KEYCODE_BACK && !(drawer.isOpen()) && !(currentFragment instanceof NoticeContentFragment)) {
             if(System.currentTimeMillis() - initTime > 3000) {
                 showToast("종료하려면 한 번 더 누르세요.");
                 initTime = System.currentTimeMillis();
@@ -102,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 System.runFinalization();
                 System.exit(0);
             }
+        }
+        else if (keyCode == KeyEvent.KEYCODE_BACK && currentFragment instanceof NoticeContentFragment) {
+            loadFragment(new NoticeListFragment());
         }
 
         return true;

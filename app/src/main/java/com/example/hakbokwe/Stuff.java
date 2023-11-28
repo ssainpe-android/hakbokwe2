@@ -4,6 +4,7 @@ public class Stuff {
     private String profile;
     private String name;
     private int quantity;
+    private int deposit;
 
     //생성자
     public Stuff() {}
@@ -34,5 +35,12 @@ public class Stuff {
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getDeposit() {
+        return deposit;
+    }
+    public void setDeposit(int deposit) {
+        this.deposit = deposit;
     }
 }
