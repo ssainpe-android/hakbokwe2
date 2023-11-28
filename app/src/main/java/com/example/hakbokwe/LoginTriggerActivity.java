@@ -28,4 +28,5 @@ public class LoginTriggerActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

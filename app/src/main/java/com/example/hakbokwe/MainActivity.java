@@ -91,7 +91,16 @@ public class MainActivity extends AppCompatActivity {
         else if(keyCode == KeyEvent.KEYCODE_BACK && drawer.isOpen()) {
             drawer.close();
         }
+        else if(keyCode == KeyEvent.KEYCODE_BACK && !(drawer.isOpen())) {
+            showToast("앱을 종료하려면 뒤로가기를 한번 더 눌러주세요");
+            finish();
+        }
 
         return true;
+    }
+
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
