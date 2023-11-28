@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RentAccountActivity extends AppCompatActivity {
+import com.example.hakbokwe.databinding.ActivityRentAccountBinding;
 
+public class RentAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActivityRentAccountBinding binding = ActivityRentAccountBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rent_account);
+        setContentView(binding.getRoot());
     }
 }

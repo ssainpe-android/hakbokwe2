@@ -1,5 +1,6 @@
 package com.example.hakbokwe;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hakbokwe.databinding.FragmentHomeBinding;
 import com.google.firebase.FirebaseApp;
@@ -27,7 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecyclerViewItemClickListener {
 
     private FragmentHomeBinding binding;
 
@@ -52,7 +54,7 @@ public class HomeFragment extends Fragment {
         binding.homeItemListRv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //CustomAdapter 객체 생성 후 RecyclerView 객체와 연결
-        CustomAdapter customAdapter = new CustomAdapter(dataSet);
+        CustomAdapter customAdapter = new CustomAdapter(dataSet,this);
         binding.homeItemListRv.setAdapter(customAdapter);
 
         // Firebase 초기화 코드
@@ -119,5 +121,10 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+    //리사이클러뷰의 온클릭리스너 추상메서드 구현
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(),RentContentActivity.class);
+        startActivity(intent);
     }
 }

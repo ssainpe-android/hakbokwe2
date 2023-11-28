@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer);
         //첫번째는 홈화면
         loadFragment(new HomeFragment());
-        //옆에메뉴 리스너
+        //드로어(옆에 메뉴) 리스너
         drawerlistener();
         //네비게이션 리스너
         navigationinit();

@@ -16,9 +16,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
     //필드
     private ArrayList<Stuff> localDataSet;
+    private RecyclerViewItemClickListener listener;
     //생성자
-    public CustomAdapter(ArrayList<Stuff> localDataSet) {
+    public CustomAdapter(ArrayList<Stuff> localDataSet,RecyclerViewItemClickListener listener) {
         this.localDataSet = localDataSet;
+        this.listener = listener;
     }
 
     //어댑터 오버라이드 함수
@@ -40,6 +42,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // contents of the view with that element
         holder.name.setText(localDataSet.get(position).getName());
         holder.quantity.setText(String.valueOf(localDataSet.get(position).getQuantity()));
+        holder.itemView.setOnClickListener(v -> {
+            listener.onItemClick(position);
+        });
         Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
     }
 
