@@ -105,6 +105,15 @@ public class NoticeContentFragment extends Fragment {
                         binding.noticeContentNotice.setText(notice.getType());
                         binding.noticeContentMethod.setText(notice.getTitle());
                         binding.noticeContentDay.setText(notice.getDate());
+                        binding.noticeContentSubtitle1.setText(notice.getSubtitle1());
+                        binding.noticeContentSubtitle1Content.setText(notice.getSubtitle1content().replace("\\n", "\n"));
+                        binding.noticeContentSubtitle1Subcontent.setText(notice.getSubtitle1subcontent().replace("\\n", "\n"));
+                        binding.noticeContentSubtitle2.setText(notice.getSubtitle2());
+                        binding.noticeContentSubtitle2Content.setText(notice.getSubtitle2content().replace("\\n", "\n"));
+                        binding.noticeContentSubtitle2Subcontent.setText(notice.getSubtitle2subcontent().replace("\\n", "\n"));
+                        binding.noticeContentSubtitle3.setText(notice.getSubtitle3());
+                        binding.noticeContentSubtitle3Content.setText(notice.getSubtitle3content().replace("\\n", "\n"));
+                        binding.noticeContentSubtitle3Subcontent.setText(notice.getSubtitle3subcontent().replace("\\n", "\n"));
                     }
                 }
             }
