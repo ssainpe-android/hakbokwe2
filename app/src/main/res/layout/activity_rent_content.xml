@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/rent_content_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
@@ -134,19 +135,174 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rent_content_date_tv" />
 
+        <TextView
+            android:id="@+id/rent_content_warning_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="*대여 기간은 주말 및 공휴일을 제외하고 기본 3일이며 연장시\n최대 10일까지 가능합니다."
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/rent_content_date_tv"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_date_tv" />
+
+        <CalendarView
+            android:id="@+id/rent_content_calender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_warning_tv" />
+
         <View
-            android:id="@+id/test"
+            android:id="@+id/topbar2"
             android:layout_width="match_parent"
-            android:layout_height="600dp"
-            app:layout_constraintTop_toBottomOf="@id/rent_content_date_tv"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_calender" />
+
+        <TextView
+            android:id="@+id/rent_content_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:text="방문시간"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/rent_content_item_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/topbar2" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_time_tv" />
+
+        <TextView
+            android:id="@+id/rent_content_warning2_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="*학복위 윈원 상주 시간에만 대여가 가능합니다\n꼭 확인 후 시간체크 부탁드립니다."
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/rent_content_time_tv"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_time_tv" />
+
+        <RadioGroup
+            android:id="@+id/rent_content_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/rent_content_warning2_tv"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_warning2_tv">
+
+            <RadioButton
+                android:id="@+id/radio_button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30~11:45"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="12:00~13:15"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_button_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="13:30~14:45"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="15:00~16:15"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_button_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="16:30~17:45"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/topbar3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_radio_group" />
+
+        <TextView
+            android:id="@+id/rent_content_deposit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:text="보증금"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/rent_content_item_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/topbar3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_deposit_tv" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*해당 품목은 보증금이 0원입니다."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_deposit_tv"
+            app:layout_constraintStart_toStartOf="@id/rent_content_deposit_tv"/>
 
         <Button
             android:id="@+id/rent_content_rental_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="대여"
-            app:layout_constraintTop_toBottomOf="@id/test"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/rent_content_item_quantity_ll"
+            app:layout_constraintTop_toBottomOf="@id/rent_content_deposit_tv"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
