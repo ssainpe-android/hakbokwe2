@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         //드로우 레이아웃 객체 저장
         drawer = findViewById(R.id.drawer);
         //첫번째는 홈화면
