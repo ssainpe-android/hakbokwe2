@@ -6,6 +6,7 @@
     android:layout_height="400dp"
     android:orientation="vertical"
     android:padding="15dp"
+
     tools:context=".BottomSheetDialogFragment">
 
     <TextView
@@ -25,9 +26,11 @@
         android:textSize="14sp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp">
+        android:layout_marginTop="160dp"
+        android:gravity="start"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,6 +41,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/bottom_sheet_dialog_deposit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -52,16 +56,19 @@
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/bottom_sheet_dialog_check_btn"
-            android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginStart="130dp"
+            android:layout_gravity="bottom"
             android:background="@color/white"
             android:scaleType="fitXY"
-            android:src="@drawable/check_btn"/>
+            android:src="@drawable/check_btn" />
     </LinearLayout>
 
     <TextView

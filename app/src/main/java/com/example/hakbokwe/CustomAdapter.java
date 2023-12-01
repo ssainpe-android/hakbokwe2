@@ -42,10 +42,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // contents of the view with that element
         holder.name.setText(localDataSet.get(position).getName());
         holder.quantity.setText(String.valueOf(localDataSet.get(position).getQuantity()));
-        holder.itemView.setOnClickListener(v -> {
-            listener.onItemClick(position);
-        });
         Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
+
+        //Rent_Content 액티비티로 넘길 정보들
+        String name=localDataSet.get(position).getName();
+        String profile = localDataSet.get(position).getProfile();
+        int quantity=localDataSet.get(position).getQuantity();
+        int deposit = localDataSet.get(position).getDeposit();
+        //리사이클러뷰 리서너로 정보를 넘긴다.
+        holder.itemView.setOnClickListener(v -> {
+            listener.onItemClick(position,name,profile,quantity,deposit);
+        });
     }
 
     //총 아이템의 개수 반환
