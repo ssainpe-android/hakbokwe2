@@ -65,6 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <Button
+                android:id="@+id/rent_content_minus_btn"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -72,15 +73,17 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/rent_content_how_many_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="0개"
+                android:text="0"
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/rent_content_plus_btn"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
