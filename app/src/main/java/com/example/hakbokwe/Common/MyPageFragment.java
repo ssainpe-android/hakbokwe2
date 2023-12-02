@@ -37,7 +37,6 @@ public class MyPageFragment extends Fragment {
 
         binding.mypageProfileNameTv.setText(manager.getNameInSession(getContext()));
         binding.mypageProfileSchnumberVariableTv.setText(manager.getUidInSession(getContext()));
-        binding.mypageProfileFaceIv.setImageResource(R.drawable.profileface);
 
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new TabFragment(tabElement[0]));
