@@ -1,4 +1,4 @@
-package com.example.hakbokwe;
+package com.example.hakbokwe.Adaptor;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.hakbokwe.R;
+import com.example.hakbokwe.RecyclerViewItemClickListener;
+import com.example.hakbokwe.Collections.Stuff;
 
 import java.util.ArrayList;
 

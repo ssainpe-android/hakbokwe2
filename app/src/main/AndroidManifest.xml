@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Hakbokwe"
         tools:targetApi="31">
         <activity
-            android:name=".LoadingActivity"
+            android:name=".Ui.LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,20 +24,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginTriggerActivity"
+            android:name=".Login.LoginTriggerActivity"
             android:exported="false" />
         <activity
-            android:name=".UsaintLoginWebPageActivity"
+            android:name=".Login.UsaintLoginWebPageActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Common.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
-            android:name=".RentAccountActivity"
+            android:name=".Common.RentAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".RentContentActivity"
+            android:name=".Common.RentContentActivity"
             android:exported="false" />
     </application>
 

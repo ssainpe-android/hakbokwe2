@@ -1,14 +1,13 @@
-package com.example.hakbokwe;
+package com.example.hakbokwe.Ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hakbokwe.Common.RentAccountActivity;
 import com.example.hakbokwe.databinding.FragmentBottomSheetDialogBinding;
 
 public class BottomSheetDialogFragment extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
@@ -24,7 +23,7 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
         //보증금 바인딩
         binding.bottomSheetDialogDeposit.setText(String.valueOf(deposit));
         binding.bottomSheetDialogCheckBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(),RentAccountActivity.class);
+            Intent intent = new Intent(getActivity(), RentAccountActivity.class);
             intent.putExtra("deposit",deposit);
             startActivity(intent);
         });

@@ -1,4 +1,4 @@
-package com.example.hakbokwe;
+package com.example.hakbokwe.Common;
 
 import android.os.Bundle;
 
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import com.example.hakbokwe.Adaptor.CustomAdapterForNotice;
+import com.example.hakbokwe.Collections.Notice;
 import com.example.hakbokwe.databinding.FragmentNoticeListBinding;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentSnapshot;

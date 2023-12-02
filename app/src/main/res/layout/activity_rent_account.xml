@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_logo"
     android:padding="20dp"
-    tools:context=".RentAccountActivity"
+    tools:context=".Common.RentAccountActivity"
     android:id="@+id/rent_account_layout">
 
     <TextView

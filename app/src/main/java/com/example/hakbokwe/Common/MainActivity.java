@@ -4,7 +4,7 @@
 2023-11-22: layout과 merging complete.
  */
 
-package com.example.hakbokwe;
+package com.example.hakbokwe.Common;
 
 
 import androidx.annotation.NonNull;
@@ -13,18 +13,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 
+import com.example.hakbokwe.R;
 import com.example.hakbokwe.databinding.ActivityMainBinding;
 import com.example.hakbokwe.databinding.FragmentNoticeListBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
-import android.content.Context;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.mypageFragment) {
-                    loadFragment(new MypageFragment());
+                    loadFragment(new MyPageFragment());
                 } else if (item.getItemId() == R.id.homeFragment) {
                     loadFragment(new HomeFragment());
                 } else if (item.getItemId() == R.id.menuFragment) {

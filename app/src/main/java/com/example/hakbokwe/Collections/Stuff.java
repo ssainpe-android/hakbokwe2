@@ -1,4 +1,4 @@
-package com.example.hakbokwe;
+package com.example.hakbokwe.Collections;
 
 public class Stuff {
     private String profile;

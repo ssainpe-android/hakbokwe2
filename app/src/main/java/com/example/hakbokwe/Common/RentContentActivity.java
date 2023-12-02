@@ -1,14 +1,12 @@
-package com.example.hakbokwe;
+package com.example.hakbokwe.Common;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.CalendarView;
 
 import com.bumptech.glide.Glide;
+import com.example.hakbokwe.Ui.BottomSheetDialogFragment;
 import com.example.hakbokwe.databinding.ActivityRentContentBinding;
 
 public class RentContentActivity extends AppCompatActivity {
