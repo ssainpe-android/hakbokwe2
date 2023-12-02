@@ -36,6 +36,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -62,6 +64,10 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+    //material calendar
+    implementation ("com.github.prolificinteractive:material-calendarview:2.0.1")
+    implementation ("com.jakewharton.threetenabp:threetenabp:1.1.1")
 }
 
 

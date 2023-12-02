@@ -11,6 +11,10 @@ public class RentAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ActivityRentAccountBinding binding = ActivityRentAccountBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+        //뒤로가기 버튼
+        binding.rentAccountBackBtn.setOnClickListener(v -> {
+            finish();
+        });
         setContentView(binding.getRoot());
     }
 }
