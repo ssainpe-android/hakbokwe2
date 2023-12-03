@@ -1,134 +1,98 @@
 package com.example.hakbokwe.Common;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.hakbokwe.Adaptor.CustomAdapter;
+import com.example.hakbokwe.Adaptor.ViewPagerFragmentAdapter;
 import com.example.hakbokwe.Collections.Stuff;
-import com.example.hakbokwe.RecyclerViewItemClickListener;
+import com.example.hakbokwe.Ui.HomeTabFragment;
+import com.example.hakbokwe.Ui.MyPageTabFragment;
 import com.example.hakbokwe.databinding.FragmentHomeBinding;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class HomeFragment extends Fragment implements RecyclerViewItemClickListener {
-
-    private FragmentHomeBinding binding;
-
-    ArrayList<Stuff> dataSet;
-
-    //검색 기능 구현
-    EditText searchET;
-    ArrayList<Stuff> filteredList;
+public class HomeFragment extends Fragment{
+    FragmentHomeBinding binding;
+    ViewPagerFragmentAdapter adapterForViewPager;
+    HomeTabFragment tabFragment;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        String[] tabElement = new String[]{"전체", "행사", "체육", "교육"};
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view =binding.getRoot();
+        View view = binding.getRoot();
 
-        dataSet = new ArrayList<>();
+        //ViewPager2에 TabFragments 전달(Adapter pattern)
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new HomeTabFragment(tabElement[0]));
+        fragments.add(new HomeTabFragment(tabElement[1]));
+        fragments.add(new HomeTabFragment(tabElement[2]));
+        fragments.add(new HomeTabFragment(tabElement[3]));
+        adapterForViewPager = new ViewPagerFragmentAdapter(getActivity(), fragments);
+        binding.homeItemlistVp.setAdapter(adapterForViewPager);
 
-        //RecyclerView와 연결
-        RecyclerView recyclerView = binding.homeItemListRv;
+        //TabLayout과 ViewPager2 연동
+        new TabLayoutMediator(binding.homeCategoryTl, binding.homeItemlistVp, (tab, position) -> {
+            tab.setText(tabElement[position]);
+        }).attach();
 
-        //LayoutManager 객체 생성 후 RecylcerView 객체와 연결
-        binding.homeItemListRv.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        //CustomAdapter 객체 생성 후 RecyclerView 객체와 연결
-        CustomAdapter customAdapter = new CustomAdapter(dataSet,this);
-        binding.homeItemListRv.setAdapter(customAdapter);
-
-        // Firebase 초기화 코드
-        FirebaseApp.initializeApp(requireContext());
-
-        //Firestore 이용
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection("stuff").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        //현재 선택된 탭 리턴
+        binding.homeCategoryTl.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.d("TAG", "Listen failed.");
-                    return;
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+                int selectedTabIndex = tab.getPosition();
+                Fragment selectedFragment = adapterForViewPager.createFragment(selectedTabIndex);
 
-                if(value != null) {
-                    dataSet.clear();
-                    for (DocumentSnapshot snapshot : value.getDocuments()) {
-                        Stuff stuff = snapshot.toObject(Stuff.class);
-                        if (stuff != null) {
-                            dataSet.add(stuff);
-                        }
-                    }
-                    customAdapter.notifyDataSetChanged();
+                if (selectedFragment instanceof HomeTabFragment) {
+                    tabFragment = (HomeTabFragment) selectedFragment;
                 }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
             }
         });
 
-
         //검색 기능 구현
-        searchET = binding.homeSearchEt;
-        filteredList = new ArrayList<>();
-
-        searchET.addTextChangedListener(new TextWatcher() {
+        binding.homeSearchEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                String searchText = searchET.getText().toString();
-                filteredList.clear();
-
-                if(searchText.equals("")){
-                    customAdapter.setItems(dataSet);
-                }
-                else {
-                    // 검색 단어를 포함하는지 확인
-                    for (int i = 0; i < dataSet.size(); i++) {
-                        if (dataSet.get(i).getName().toLowerCase().contains(searchText.toLowerCase())) {
-                            filteredList.add(dataSet.get(i));
-                        }
-                        customAdapter.setItems(filteredList);
-                    }
-                }
+                String searchText = binding.homeSearchEt.getText().toString();
+                updateSearchResults(searchText);
             }
         });
 
         return view;
     }
-    //리사이클러뷰의 온클릭리스너 추상메서드 구현
-    public void onItemClick(int position, String name, String profile ,int quantity, int deposit){
-        Intent intent = new Intent(getActivity(),RentContentActivity.class);
-        intent.putExtra("name",name);
-        intent.putExtra("profile",profile);
-        intent.putExtra("quantity",quantity);
-        intent.putExtra("deposit",deposit);
-        startActivity(intent);
+
+    private void updateSearchResults(String searchText) {
+        if (tabFragment != null) {
+            tabFragment.updateSearchResults(searchText);
+        }
     }
 }

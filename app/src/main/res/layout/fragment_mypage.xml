@@ -67,9 +67,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/mypage_itemlist_vp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.hakbokwe.Adaptor;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rental, parent, false);
 
@@ -56,6 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.itemView.setOnClickListener(v -> {
             listener.onItemClick(position,name,profile,quantity,deposit);
         });
+        Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
     }
 
     //총 아이템의 개수 반환
@@ -79,7 +80,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     //검색 기능 구현
-    public void setItems(ArrayList<Stuff> list){
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateList(ArrayList<Stuff> list){
         localDataSet = list;
         notifyDataSetChanged();
     }

@@ -56,14 +56,14 @@ public class RentedItemsAdapter extends RecyclerView.Adapter<RentedItemsAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView profile;
         private TextView name;
+        private ImageView profile;
         private TextView quantityHeld;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            profile = itemView.findViewById(R.id.item_having_profile);
             name = itemView.findViewById(R.id.item_having_name);
+            profile = itemView.findViewById(R.id.item_having_profile);
             quantityHeld = itemView.findViewById(R.id.item_having_quantity);
         }
     }
