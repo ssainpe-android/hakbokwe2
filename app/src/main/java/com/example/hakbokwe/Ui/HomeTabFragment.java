@@ -1,6 +1,8 @@
 package com.example.hakbokwe.Ui;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import com.example.hakbokwe.Adaptor.CustomAdapter;
 import com.example.hakbokwe.Collections.RentedItem;
 import com.example.hakbokwe.Collections.Stuff;
 import com.example.hakbokwe.Common.RentContentActivity;
+import com.example.hakbokwe.Login.UserSessionManager;
 import com.example.hakbokwe.RecyclerViewItemClickListener;
 import com.example.hakbokwe.databinding.FragmentTabBinding;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -143,5 +146,22 @@ public class HomeTabFragment extends Fragment implements RecyclerViewItemClickLi
         intent.putExtra("deposit",deposit);
         intent.putExtra("documentid",documentid);
         startActivity(intent);
+    }
+
+    public void showCustomDialog(int position, String name, String profile ,int quantity, int deposit, String documentid) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("알림")
+                .setMessage("즐겨찾기에 추가하시겠습니까?")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        UserSessionManager manager = new UserSessionManager();
+                        String id = manager.getUidInSession(getContext());
+                    }
+                })
+                .setNegativeButton("취소",null)
+                .create()
+                .show();
     }
 }

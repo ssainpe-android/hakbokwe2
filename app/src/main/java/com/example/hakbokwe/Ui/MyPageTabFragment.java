@@ -1,5 +1,6 @@
 package com.example.hakbokwe.Ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -112,5 +113,13 @@ public class MyPageTabFragment extends Fragment implements RecyclerViewItemClick
         intent.putExtra("deposit",deposit);
         intent.putExtra("documentid",documentid);
         startActivity(intent);
+    }
+    public void showCustomDialog(int position, String name, String profile ,int quantity, int deposit, String documentid) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setTitle("알림");
+        alertDialogBuilder.setMessage("즐겨찾기에 추가하시겠습니까?");
+        alertDialogBuilder.setPositiveButton("확인", (dialog, which) -> dialog.dismiss());
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

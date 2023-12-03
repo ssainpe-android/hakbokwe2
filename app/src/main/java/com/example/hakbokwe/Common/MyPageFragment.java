@@ -40,7 +40,6 @@ public class MyPageFragment extends Fragment {
 
         binding.mypageProfileNameTv.setText(manager.getNameInSession(getContext()));
         binding.mypageProfileSchnumberVariableTv.setText(manager.getUidInSession(getContext()));
-        binding.mypageProfileFaceIv.setImageResource(R.drawable.profileface);
 
         //ViewPager2에 TabFragments 전달(Adapter pattern)
         List<Fragment> fragments = new ArrayList<>();

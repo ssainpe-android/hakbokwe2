@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.hakbokwe.R;
 import com.example.hakbokwe.Ui.BottomSheetDialogFragment;
 import com.example.hakbokwe.databinding.ActivityRentContentBinding;
 
@@ -25,6 +28,8 @@ public class RentContentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRentContentBinding.inflate(getLayoutInflater());
+
+
         //뒤로가기 버튼
         back();
         //리사이클러뷰에서 물품 정보 가져오기
@@ -46,6 +51,7 @@ public class RentContentActivity extends AppCompatActivity {
                 Log.d("YYC", "button clicked");
             }
         });
+
     }
 
     private void plusButtonLogic() {

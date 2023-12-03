@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.hakbokwe.Common.RentAccountActivity;
 import com.example.hakbokwe.databinding.FragmentBottomSheetDialogBinding;
@@ -52,6 +53,10 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
         return  binding.getRoot();
     }
 
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -98,13 +103,20 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
             @Override
             public void onClick(View v) {
                 // Firestore에서 문서 업데이트
-                db.collection(collectionPath)
-                        .document(documentId)
-                        .update(dataToUpdate);
-                Intent intent = new Intent(getActivity(), RentAccountActivity.class);
-                intent.putExtra("deposit",deposit);
-                startActivity(intent);
+                if(howMany == 0) {
+                    showToast("수량을 다시 확인해주세요");
+                }
+                else {
+                    // Firestore에서 문서 업데이트
+                    db.collection(collectionPath)
+                            .document(documentId)
+                            .update(dataToUpdate);
+                    Intent intent = new Intent(getActivity(), RentAccountActivity.class);
+                    intent.putExtra("deposit",deposit);
+                    startActivity(intent);
+                }
             }
         });
+
     }
 }

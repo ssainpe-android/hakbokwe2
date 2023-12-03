@@ -1,7 +1,10 @@
 package com.example.hakbokwe.Adaptor;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,12 +20,13 @@ import com.example.hakbokwe.Collections.Stuff;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     //필드
     private ArrayList<Stuff> localDataSet;
     private RecyclerViewItemClickListener listener;
+
     //생성자
-    public CustomAdapter(ArrayList<Stuff> localDataSet,RecyclerViewItemClickListener listener) {
+    public CustomAdapter(ArrayList<Stuff> localDataSet, RecyclerViewItemClickListener listener) {
         this.localDataSet = localDataSet;
         this.listener = listener;
     }
@@ -47,16 +51,40 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
 
         //Rent_Content 액티비티로 넘길 정보들
-        String name=localDataSet.get(position).getName();
+        String name = localDataSet.get(position).getName();
         String profile = localDataSet.get(position).getProfile();
-        int quantity=localDataSet.get(position).getQuantity();
+        int quantity = localDataSet.get(position).getQuantity();
         int deposit = localDataSet.get(position).getDeposit();
         String documentid = localDataSet.get(position).getDocumentid();
-        //리사이클러뷰 리서너로 정보를 넘긴다.
+        //리사이클러뷰 리스너로 정보를 넘긴다.
         holder.itemView.setOnClickListener(v -> {
-            listener.onItemClick(position,name,profile,quantity,deposit,documentid);
+            listener.onItemClick(position, name, profile, quantity, deposit, documentid);
         });
-        Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // 버튼을 누르고 있을 때
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // 3초 이상 누르고 있으면 다이얼로그 띄우기
+                                if (holder.itemView.isPressed()) {
+                                    listener.showCustomDialog(position, name, profile, quantity, deposit, documentid);
+                                }
+                            }
+                        },1000);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        // 버튼에서 손을 뗄 때 또는 취소할 때
+                        new Handler().removeCallbacksAndMessages(null);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     //총 아이템의 개수 반환
@@ -71,6 +99,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         private ImageView profile;
         private TextView name;
         private TextView quantity;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profile = itemView.findViewById(R.id.item_rental_profile);
@@ -81,8 +110,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     //검색 기능 구현
     @SuppressLint("NotifyDataSetChanged")
-    public void updateList(ArrayList<Stuff> list){
+    public void updateList(ArrayList<Stuff> list) {
         localDataSet = list;
         notifyDataSetChanged();
     }
+    //핸들러
+
 }

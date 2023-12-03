@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_frm);
 
-        if(keyCode == KeyEvent.KEYCODE_BACK && !(currentFragment instanceof HomeFragment)) {
-            loadFragment(new HomeFragment());
-        }
-        else if(keyCode == KeyEvent.KEYCODE_BACK && drawer.isOpen()) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && drawer.isOpen()) {
             drawer.close();
+        }
+        else if(keyCode == KeyEvent.KEYCODE_BACK && !(currentFragment instanceof HomeFragment)){
+            loadFragment(new HomeFragment());
         }
         else if(keyCode == KeyEvent.KEYCODE_BACK && !(drawer.isOpen())) {
             if(System.currentTimeMillis() - initTime > 3000) {
@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         }
-
         return true;
     }
 

@@ -7,9 +7,7 @@ public class RentedItem {
     private int quantity;
     private int deposit;
 
-    public String getDocumentid() {
-        return documentid;
-    }
+    private int quantityHeld;
 
     private String documentid;
 
@@ -30,6 +28,14 @@ public class RentedItem {
 
     public String getProfile() {
         return profile;
+    }
+
+    public int getQuantityHeld() {
+        return quantityHeld;
+    }
+
+    public String getDocumentid() {
+        return documentid;
     }
 
     public int getQuantity() {
