@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.hakbokwe.Common.RentAccountActivity;
+import com.example.hakbokwe.Login.UserSessionManager;
 import com.example.hakbokwe.databinding.FragmentBottomSheetDialogBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
@@ -23,6 +26,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,12 +36,16 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
     private int howMany;
     private String documentid;
     private int initial;
+    private String name;
+    private String profile;
 
     FragmentBottomSheetDialogBinding binding;
-    public BottomSheetDialogFragment(int deposit, int howMany, String documentid) {
+    public BottomSheetDialogFragment(int deposit, int howMany, String documentid, String name, String profile) {
         this.deposit = deposit;
         this.howMany = howMany;
         this.documentid = documentid;
+        this.name = name;
+        this.profile = profile;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,10 +61,6 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
         return  binding.getRoot();
     }
 
-    private void showToast(String message) {
-        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
-        toast.show();
-    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -84,8 +88,6 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
                         // 문서가 존재할 경우 quantity 필드 가져오기
                         initial = document.getLong("quantity").intValue();
                         // 이제 intValue에 quantity 값이 들어 있음
-                        Log.d("YYC", "int 값: " + initial);
-                        Log.d("YYC", "int 값2: " + (initial - howMany));
                         dataToUpdate.put("quantity", initial - howMany);
                     } else {
                         // 문서가 존재하지 않을 경우 처리
@@ -98,11 +100,21 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
             }
         });
 
-        //확인 버튼을 눌렀을 때 서버의 수량 바뀜
+        //DB의 users 컬렉션에 정보를 추가하기 위한 밑작업
+        UserSessionManager manager = new UserSessionManager();
+        CollectionReference studentIDRef = db.collection("users")
+                .document(manager.getUidInSession(getContext()))
+                .collection("rentedItems");
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", name);
+        data.put("profile", profile);
+        data.put("quantityHeld", howMany);
+
+        //확인 버튼을 눌렀을 때 서버의 수량 바뀜 + DB의 users 컬렉션에 정보 추가
         binding.bottomSheetDialogCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Firestore에서 문서 업데이트
                 if(howMany == 0) {
                     showToast("수량을 다시 확인해주세요");
                 }
@@ -111,12 +123,19 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
                     db.collection(collectionPath)
                             .document(documentId)
                             .update(dataToUpdate);
+
                     Intent intent = new Intent(getActivity(), RentAccountActivity.class);
                     intent.putExtra("deposit",deposit);
                     startActivity(intent);
+
+                    studentIDRef.document(documentid).set(data, SetOptions.merge());
                 }
             }
         });
+    }
 
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

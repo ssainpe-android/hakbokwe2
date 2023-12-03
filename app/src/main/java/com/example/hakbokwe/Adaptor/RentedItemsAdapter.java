@@ -37,12 +37,12 @@ public class RentedItemsAdapter extends RecyclerView.Adapter<RentedItemsAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(rentedItems.get(position).getName());
-        holder.quantityHeld.setText(String.valueOf(rentedItems.get(position).getQuantity()));
+        holder.quantityHeld.setText(String.valueOf(rentedItems.get(position).getQuantityHeld()));
         Glide.with(holder.profile.getContext()).load(rentedItems.get(position).getProfile()).into(holder.profile);
 
-        String name=rentedItems.get(position).getName();
+        String name = rentedItems.get(position).getName();
         String profile = rentedItems.get(position).getProfile();
-        int quantity=rentedItems.get(position).getQuantity();
+        int quantity = rentedItems.get(position).getQuantity();
         int deposit = rentedItems.get(position).getDeposit();
         String documentid =rentedItems.get(position).getDocumentid();
 
