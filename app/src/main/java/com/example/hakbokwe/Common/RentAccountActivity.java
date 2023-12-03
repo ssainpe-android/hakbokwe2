@@ -25,7 +25,8 @@ public class RentAccountActivity extends AppCompatActivity {
     private void finishrent() {
         binding.rentAccountLayout.setOnClickListener(v -> {
             finish();
-            loadFragment(new HomeFragment());
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
     }
 

@@ -34,7 +34,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rental, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -52,9 +51,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         String profile = localDataSet.get(position).getProfile();
         int quantity=localDataSet.get(position).getQuantity();
         int deposit = localDataSet.get(position).getDeposit();
+        String documentid = localDataSet.get(position).getDocumentid();
         //리사이클러뷰 리서너로 정보를 넘긴다.
         holder.itemView.setOnClickListener(v -> {
-            listener.onItemClick(position,name,profile,quantity,deposit);
+            listener.onItemClick(position,name,profile,quantity,deposit,documentid);
         });
         Glide.with(holder.profile.getContext()).load(localDataSet.get(position).getProfile()).into(holder.profile);
     }

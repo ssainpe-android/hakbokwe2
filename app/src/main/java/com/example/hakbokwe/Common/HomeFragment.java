@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment{
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String[] tabElement = new String[]{"전체", "행사", "체육", "교육"};
+        String[] tabElement = new String[]{"전체", "행사", "체육", "생활"};
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -95,4 +95,6 @@ public class HomeFragment extends Fragment{
             tabFragment.updateSearchResults(searchText);
         }
     }
+
+
 }

@@ -104,12 +104,13 @@ public class MyPageTabFragment extends Fragment implements RecyclerViewItemClick
     }
 
     @Override
-    public void onItemClick(int position, String name, String profile ,int quantity, int deposit){
+    public void onItemClick(int position, String name, String profile ,int quantity, int deposit,String documentid){
         Intent intent = new Intent(getActivity(),RentContentActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("profile",profile);
         intent.putExtra("quantity",quantity);
         intent.putExtra("deposit",deposit);
+        intent.putExtra("documentid",documentid);
         startActivity(intent);
     }
 }

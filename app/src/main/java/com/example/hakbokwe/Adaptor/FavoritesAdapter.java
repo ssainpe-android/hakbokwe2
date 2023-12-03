@@ -44,9 +44,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         String profile = favorites.get(position).getProfile();
         int quantity=favorites.get(position).getQuantity();
         int deposit = favorites.get(position).getDeposit();
-
+        String documentid = favorites.get(position).getDocumentid();
+        //리사이클러뷰 리서너로 정보를 넘긴다.
         holder.itemView.setOnClickListener(v -> {
-            listener.onItemClick(position,name,profile,quantity,deposit);
+            listener.onItemClick(position,name,profile,quantity,deposit,documentid);
         });
     }
 

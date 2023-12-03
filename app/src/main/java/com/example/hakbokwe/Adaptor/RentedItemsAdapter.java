@@ -44,9 +44,10 @@ public class RentedItemsAdapter extends RecyclerView.Adapter<RentedItemsAdapter.
         String profile = rentedItems.get(position).getProfile();
         int quantity=rentedItems.get(position).getQuantity();
         int deposit = rentedItems.get(position).getDeposit();
+        String documentid =rentedItems.get(position).getDocumentid();
 
         holder.itemView.setOnClickListener(v -> {
-            listener.onItemClick(position,name,profile,quantity,deposit);
+            listener.onItemClick(position,name,profile,quantity,deposit,documentid);
         });
     }
 

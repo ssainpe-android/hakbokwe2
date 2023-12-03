@@ -6,6 +6,12 @@ public class Favorite {
     private int quantity;
     private int deposit;
 
+    public String getDocumentid() {
+        return documentid;
+    }
+
+    private String documentid;
+
     public Favorite() {
     }
 

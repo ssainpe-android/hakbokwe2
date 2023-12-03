@@ -42,7 +42,7 @@ public class HomeTabFragment extends Fragment implements RecyclerViewItemClickLi
             case "체육":
                 this.category = 2;
                 break;
-            case "교육":
+            case "생활":
                 this.category = 3;
                 break;
         }
@@ -50,7 +50,7 @@ public class HomeTabFragment extends Fragment implements RecyclerViewItemClickLi
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String[] tabElement = new String[]{"전체", "행사", "체육", "교육"};
+        String[] tabElement = new String[]{"전체", "행사", "체육", "생활"};
 
         binding = FragmentTabBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -135,12 +135,13 @@ public class HomeTabFragment extends Fragment implements RecyclerViewItemClickLi
     }
 
     @Override
-    public void onItemClick(int position, String name, String profile ,int quantity, int deposit){
+    public void onItemClick(int position, String name, String profile ,int quantity, int deposit,String documentid){
         Intent intent = new Intent(getActivity(),RentContentActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("profile",profile);
         intent.putExtra("quantity",quantity);
         intent.putExtra("deposit",deposit);
+        intent.putExtra("documentid",documentid);
         startActivity(intent);
     }
 }
